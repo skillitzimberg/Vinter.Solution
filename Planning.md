@@ -77,3 +77,9 @@ Output: 'Zinfandel' 'Cabernet'
 **Example:**
 Input:  'New Item: Cabernet'
 Output: 'Cabernet'
+
+
+
+## CREATE TABLE `vinter`.`varietals` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+##CREATE TABLE `vinter`.`bottles` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `region` VARCHAR(255) NOT NULL , `maker` VARCHAR(255) NOT NULL , `varietal_id` INT(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
