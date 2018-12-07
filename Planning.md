@@ -13,6 +13,8 @@
 * Create Test Files for each Class in the ModelTests folder
 * Create basic content for all files
 * Set up test files for working with the database
+* Test that class properties can be retrieved
+* Test the Save() saves to Database
 
 ### Classes
 * Bottle
@@ -50,30 +52,45 @@
 #### Bottle Model Specs
 ##### Spec 0: Bottle returns bottle
 **Example:**
-Input: 1, 'Zinfandel', "Mexico", "Don Giovanni", 1
+Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
 Output: Bottle
-##### Spec 1: Bottle returns bottle id
+##### Spec: Bottle returns bottle id
 **Example:**
-Input: 1, 'Zinfandel', "Mexico", "Don Giovanni", 1
+Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
 Output: 1
-##### Spec 2: Bottle returns bottle name
+##### Spec: Bottle returns bottle name
 **Example:**
-Input: 1, 'Zinfandel', "Mexico", "Don Giovanni", 1
+Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
 Output: 'Zinfandel'
-##### Spec 3: Bottle returns a list of all bottles
+##### Spec: Bottle returns bottle region
+**Example:**
+Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
+Output: "Mexico"
+##### Spec: Bottle returns bottle maker
+**Example:**
+Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
+Output: "Don Giovanni"
+##### Spec: Bottle returns varietal id
+**Example:**
+Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
+Output: 1
+
+### Test the Save() saves to database
+
+##### Spec: Bottle returns a list of all bottles
 **Example:**
 Input:
-bottleOne: (1, 'Zinfandel', "Mexico", "Don Giovanni", 1), bottleTwo: (1, 'PortoPort', "California", "Paul's Vineyard", 2)
+bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
 Output: List<Bottle>{bottleOne, bottleTwo}
-##### Spec 4: Bottle add new bottle
+##### Spec: Bottle add new bottle
 **Example:**
 Input: 'New Item: Cabernet'
 Output: 'Cabernet'
-##### Spec 5: Bottle delete from list array of things(Cabernet)
+##### Spec: Bottle delete from list array of things(Cabernet)
 **Example:**
 Input: 'Zinfandel' 'Cabernet'
 Output: 'Cabernet'
-##### Spec 6: Bottle saves item (new item)
+##### Spec: Bottle saves item (new item)
 **Example:**
 Input:  'New Item: Cabernet'
 Output: 'Cabernet'

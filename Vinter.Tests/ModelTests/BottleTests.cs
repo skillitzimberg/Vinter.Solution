@@ -82,6 +82,35 @@ namespace Vinter.Tests
       Assert.AreEqual(expectedVarietalId, actualVarietalId);
     }
 
+    [TestMethod]
+    public void GetAll_ReturnsEmptyList_ItemList()
+    {
+      //Arrange
+      List<Bottle> expectedBottleList = new List<Bottle> { };
+
+      //Act
+      List<Bottle> actualBottleList = Bottle.GetAll();
+
+      //Assert
+      CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
+    }
+
+
+    // [TestMethod]
+    // public void Save_SavesToDatabase_BottleList()
+    // {
+    //   //Arrange
+    //   Item testItem = new Item("Mow the lawn", 1);
+    //
+    //   //Act
+    //   testItem.Save();
+    //   List<Item> result = Item.GetAll();
+    //   List<Item> testList = new List<Item>{testItem};
+    //
+    //   //Assert
+    //   CollectionAssert.AreEqual(testList, result);
+    // }
+
 
   }
 }
