@@ -46,6 +46,38 @@ namespace Vinter.Models
       return _varietalId;
     }
 
+    public static void ClearAll()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"DELETE FROM bottles;";
+      cmd.ExecuteNonQuery();
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+    }
+
+    public override bool Equals(System.Object otherBottle)
+    {
+      if (!(otherBottle is Bottle))
+      {
+        return false;
+      }
+      else
+      {
+        Bottle newBottle = (Bottle) otherBottle;
+        bool idEquality = (this.GetId() == newBottle.GetId());
+        bool nameEquality = (this.GetName() == newBottle.GetName());
+        bool varietalEquality = this.GetVarietalId() == newBottle.GetVarietalId();
+        return (idEquality && nameEquality && varietalEquality);
+        //fail the Equals test by not adding the Equals method
+      }
+    }
+
     public static List<Bottle> GetAll()
     {
       // Bottle newBottle = new Bottle("anystring", "bottleRegion", "bottleMaker", 2, 4);
@@ -80,7 +112,7 @@ namespace Vinter.Models
       MySqlConnection conn = DB.Connection();
       conn.Open();
       MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-      cmd.CommandText = @"INSERT INTO bottles (bottleName, bottleRegion, bottleMaker, varietalId) VALUES (@BottleName, @BottleRegion, @BottelMaker, @VarietalId);";
+      cmd.CommandText = @"INSERT INTO bottles (name, region, maker, varietal_id) VALUES (@BottleName, @BottleRegion, @BottleMaker, @VarietalId);";
 
       MySqlParameter bottleName = new MySqlParameter();
       bottleName.ParameterName = "@BottleName";

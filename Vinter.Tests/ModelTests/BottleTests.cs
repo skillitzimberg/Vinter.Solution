@@ -11,7 +11,7 @@ namespace Vinter.Tests
   {
     public void Dispose()
     {
-        // Bottle.ClearAll();
+        Bottle.ClearAll();
     }
 
     public BottleTest()
@@ -81,18 +81,18 @@ namespace Vinter.Tests
       Assert.AreEqual(expectedVarietalId, actualVarietalId);
     }
 
-    // [TestMethod]
-    // public void GetAll_ReturnsEmptyList_ItemList()
-    // {
-    //   //Arrange
-    //   List<Bottle> expectedBottleList = new List<Bottle> { };
-    //
-    //   //Act
-    //   List<Bottle> actualBottleList = Bottle.GetAll();
-    //
-    //   //Assert
-    //   CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
-    // }
+    [TestMethod]
+    public void GetAll_ReturnsEmptyList_ItemList()
+    {
+      //Arrange
+      List<Bottle> expectedBottleList = new List<Bottle> { };
+
+      //Act
+      List<Bottle> actualBottleList = Bottle.GetAll();
+
+      //Assert
+      CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
+    }
 
     [TestMethod]
     public void Save_SavesToDatabase_BottleList()
@@ -105,6 +105,8 @@ namespace Vinter.Tests
       newBottle.Save();
       List<Bottle> actualBottleList = Bottle.GetAll();
 
+      Console.WriteLine(expectedBottleList[0].GetName());
+      Console.WriteLine(actualBottleList[0].GetName());
       //Assert
       CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
     }

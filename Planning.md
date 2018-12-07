@@ -1,4 +1,9 @@
-## Planning Document
+# Planning Document
+
+## CREATE DATABASE vinter
+## CREATE TABLE `vinter`.`varietals` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+## CREATE TABLE `vinter`.`bottles` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `region` VARCHAR(255) NOT NULL , `maker` VARCHAR(255) NOT NULL , `varietal_id` INT(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 * Outline Classes/Tables
 * Outline Models/Methods
@@ -14,7 +19,9 @@
 * Create basic content for all files
 * Set up test files for working with the database
 * Test that class properties can be retrieved
-* Test the Save() saves to Database
+* Implement teardown using Dispose() and ClearAll() so that test data is cleared between each test
+* Add Equals() method to type cast objects, "bottles" in this case, that are in different parts of memory - one in RAM, one from the database - as the same object.
+* Test that Save() saves to Database
 
 ### Classes
 * Bottle
@@ -135,10 +142,3 @@ Output: 'Zinfandel' 'Cabernet'
 **Example:**
 Input:  'New Item: Cabernet'
 Output: 'Cabernet'
-
-
-
-
-## CREATE TABLE `vinter`.`varietals` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-
-##CREATE TABLE `vinter`.`bottles` ( `id` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `region` VARCHAR(255) NOT NULL , `maker` VARCHAR(255) NOT NULL , `varietal_id` INT(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
