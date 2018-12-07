@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Vinter.Models;
 
 namespace Vinter
 {
@@ -24,9 +25,9 @@ namespace Vinter
       services.AddMvc();
     }
 
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app)
     {
-      app.UseDeveloperExceptionPage();
+      // app.UseDeveloperExceptionPage();
       app.UseMvc(routes =>
       {
           routes.MapRoute(
@@ -34,7 +35,7 @@ namespace Vinter
               template: "{controller=Home}/{action=Index}/{id?}");
       });
 
-      app.UseStaticFiles();
+      // app.UseStaticFiles();
 
       app.Run(async (context) =>
       {
@@ -45,6 +46,6 @@ namespace Vinter
   }
   public static class DBConfiguration
 {
-  public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=sampledatabase;";
+  public static string ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=vinter;";
 }
 }

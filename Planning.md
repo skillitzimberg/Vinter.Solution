@@ -75,13 +75,23 @@ Output: "Don Giovanni"
 Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
 Output: 1
 
-### Test the Save() saves to database
+### Test that Save() saves to database
+
+##### Spec: Bottle returns empty list
+**Example:**
+Input:
+bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
+Output: List<Bottle>{}
 
 ##### Spec: Bottle returns a list of all bottles
 **Example:**
 Input:
 bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
 Output: List<Bottle>{bottleOne, bottleTwo}
+
+
+
+******NOT TESTED *** TO BE CONTINUED***
 ##### Spec: Bottle add new bottle
 **Example:**
 Input: 'New Item: Cabernet'

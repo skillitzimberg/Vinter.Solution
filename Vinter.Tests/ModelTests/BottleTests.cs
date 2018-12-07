@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MySql.Data.MySqlClient;
+// using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System;
 using Vinter.Models;
@@ -7,18 +7,17 @@ using Vinter.Models;
 namespace Vinter.Tests
 {
   [TestClass]
-  public class BottleTest
+  public class BottleTest : IDisposable
   {
-    // public void Dispose()
-    // {
-    //     Varietal.ClearAll();
-    //     Bottle.ClearAll();
-    // }
-    //
-    // public CategoryTest()
-    // {
-    //   DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=vinter_test;";
-    // }
+    public void Dispose()
+    {
+        // Bottle.ClearAll();
+    }
+
+    public BottleTest()
+    {
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=vinter_test;";
+    }
 
     [TestMethod]
     public void BottleConstructor_CreatesInstanceOfBottle_Bottle()
@@ -82,34 +81,51 @@ namespace Vinter.Tests
       Assert.AreEqual(expectedVarietalId, actualVarietalId);
     }
 
+    // [TestMethod]
+    // public void GetAll_ReturnsEmptyList_ItemList()
+    // {
+    //   //Arrange
+    //   List<Bottle> expectedBottleList = new List<Bottle> { };
+    //
+    //   //Act
+    //   List<Bottle> actualBottleList = Bottle.GetAll();
+    //
+    //   //Assert
+    //   CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
+    // }
+
     [TestMethod]
-    public void GetAll_ReturnsEmptyList_ItemList()
+    public void Save_SavesToDatabase_BottleList()
     {
       //Arrange
-      List<Bottle> expectedBottleList = new List<Bottle> { };
+      Bottle newBottle = new Bottle("Zinfandel", "Mexico", "Don Giovanni", 1, 1);
+      List<Bottle> expectedBottleList = new List<Bottle>{newBottle};
 
       //Act
+      newBottle.Save();
       List<Bottle> actualBottleList = Bottle.GetAll();
 
       //Assert
       CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
     }
 
-
     // [TestMethod]
-    // public void Save_SavesToDatabase_BottleList()
+    // public void GetAll_ReturnsBottles_List()
     // {
     //   //Arrange
-    //   Item testItem = new Item("Mow the lawn", 1);
+    //   Bottle bottleOne = new Bottle("Zinfandel", "Mexico", "Don Giovanni", 1, 1);
+    //   Bottle bottleTwo = new Bottle("PortoPort", "California", "Paul's Vineyard", 2, 1);
+    //   List<Bottle> expectedBottleList = new List<Bottle> { bottleOne, bottleTwo };
     //
     //   //Act
-    //   testItem.Save();
-    //   List<Item> result = Item.GetAll();
-    //   List<Item> testList = new List<Item>{testItem};
+    //   List<Bottle> actualBottleList = Bottle.GetAll();
     //
     //   //Assert
-    //   CollectionAssert.AreEqual(testList, result);
+    //   CollectionAssert.AreEqual(expectedBottleList, actualBottleList);
     // }
+
+
+
 
 
   }

@@ -1,6 +1,6 @@
-using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System;
+using MySql.Data.MySqlClient;
 
 namespace Vinter.Models
 {
@@ -47,31 +47,78 @@ namespace Vinter.Models
     }
 
     public static List<Bottle> GetAll()
-    {Bottle newBottle = new Bottle("anystring", "bottleRegion", "bottleMaker", 2, 4);
-      List<Bottle> allBottles = new List<Bottle> {newBottle};
-      // MySqlConnection conn = DB.Connection();
-      // conn.Open();
-      // var cmd = conn.CreateCommand() as MySqlCommand;
-      // cmd.CommandText = @"SELECT * FROM items;";
-      // var rdr = cmd.ExecuteReader() as MySqlDataReader;
-      // while(rdr.Read())
-      // {
-      //   int bottleId = rdr.GetInt32(0);
-      //   string bottleName = rdr.GetString(1);
-      //   string bottleRegion = rdr.GetString(2);
-      //   string bottleMaker = rdr.GetString(3);
-      //   int bottleVarietalId = rdr.GetInt32(4);
-      //   Bottle newBottle = new Bottle(bottleName, bottleRegion, bottleMaker, varietalId, bottleId);
-      //   allBottles.Add(newBottle);
-      // }
-      // conn.Close();
-      // if (conn != null)
-      // {
-      //   conn.Dispose();
-      // }
+    {
+      // Bottle newBottle = new Bottle("anystring", "bottleRegion", "bottleMaker", 2, 4);
+      // List<Bottle> allBottles = new List<Bottle> {newBottle};  **How to fail**
+
+      List<Bottle> allBottles = new List<Bottle> {};
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"SELECT * FROM bottles;";
+      MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+      while(rdr.Read())
+      {
+        int bottleId = rdr.GetInt32(0);
+        string bottleName = rdr.GetString(1);
+        string bottleRegion = rdr.GetString(2);
+        string bottleMaker = rdr.GetString(3);
+        int bottleVarietalId = rdr.GetInt32(4);
+        Bottle newBottle = new Bottle(bottleName, bottleRegion, bottleMaker, bottleVarietalId, bottleId);
+        allBottles.Add(newBottle);
+      }
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
       return allBottles;
     }
 
+    public void Save()
+    {
+      MySqlConnection conn = DB.Connection();
+      conn.Open();
+      MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
+      cmd.CommandText = @"INSERT INTO bottles (bottleName, bottleRegion, bottleMaker, varietalId) VALUES (@BottleName, @BottleRegion, @BottelMaker, @VarietalId);";
+
+      MySqlParameter bottleName = new MySqlParameter();
+      bottleName.ParameterName = "@BottleName";
+      bottleName.Value = this._name;
+      cmd.Parameters.Add(bottleName);
+
+      MySqlParameter bottleRegion = new MySqlParameter();
+      bottleRegion.ParameterName = "@BottleRegion";
+      bottleRegion.Value = this._region;
+      cmd.Parameters.Add(bottleRegion);
+
+      MySqlParameter bottleMaker = new MySqlParameter();
+      bottleMaker.ParameterName = "@BottleMaker";
+      bottleMaker.Value = this._maker;
+      cmd.Parameters.Add(bottleMaker);
+
+      MySqlParameter varietalId = new MySqlParameter();
+      varietalId.ParameterName = "@VarietalId";
+      varietalId.Value = this._varietalId;
+      cmd.Parameters.Add(varietalId);
+
+      //Add this command for above 3 lines of code
+      cmd.Parameters.AddWithValue("@BottleName", this._name);
+      cmd.Parameters.AddWithValue("@BottleRegion", this._region);
+      cmd.Parameters.AddWithValue("@BottleMaker", this._maker);
+      cmd.Parameters.AddWithValue("@VarietalId", this._varietalId);
+      cmd.ExecuteNonQuery();
+      _id = (int) cmd.LastInsertedId;
+
+      conn.Close();
+      if (conn != null)
+      {
+        conn.Dispose();
+      }
+      //To fail Saves to database method - declare method and keep it empty
+      //To fail Save AssignsId test -
+      //do not add the "_id = (int) cmd.LastInsertedId;" line
+    }
 
   }
 }

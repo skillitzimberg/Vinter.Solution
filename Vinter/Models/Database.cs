@@ -1,6 +1,6 @@
 using System;
-using Vinter;
 using MySql.Data.MySqlClient;
+using Vinter;
 
 namespace Vinter.Models
 {
