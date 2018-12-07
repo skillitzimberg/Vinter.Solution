@@ -21,7 +21,7 @@
 * Test that class properties can be retrieved
 * Implement teardown using Dispose() and ClearAll() so that test data is cleared between each test
 * Add Equals() method to type cast objects, "bottles" in this case, that are in different parts of memory - one in RAM, one from the database - as the same object.
-* Test that Save() saves to Database
+* Test that Save() saves to Database & GetAll() gets all bottles.
 
 ### Classes
 * Bottle
@@ -81,28 +81,32 @@ Output: "Don Giovanni"
 **Example:**
 Input:  'Zinfandel', "Mexico", "Don Giovanni", 1, 1
 Output: 1
-
-### Test that Save() saves to database
-
 ##### Spec: Bottle returns empty list
 **Example:**
 Input:
 bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
 Output: List<Bottle>{}
-
+### Spec: Test that ClearAll() clears database
+**Example:**
+Input:
+bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
+Output: List<Bottle>{}
+### Spec: Test that Save() saves to database
+**Example:**
+Input:
+bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
+Output: List<Bottle>{bottleOne, bottleTwo}
 ##### Spec: Bottle returns a list of all bottles
 **Example:**
 Input:
 bottleOne: ('Zinfandel', "Mexico", "Don Giovanni", 1, 1), bottleTwo: ('PortoPort', "California", "Paul's Vineyard", 2, 1)
 Output: List<Bottle>{bottleOne, bottleTwo}
 
-
-
-******NOT TESTED *** TO BE CONTINUED***
 ##### Spec: Bottle add new bottle
 **Example:**
 Input: 'New Item: Cabernet'
 Output: 'Cabernet'
+******NOT TESTED *** TO BE CONTINUED***
 ##### Spec: Bottle delete from list array of things(Cabernet)
 **Example:**
 Input: 'Zinfandel' 'Cabernet'
