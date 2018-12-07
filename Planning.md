@@ -1,5 +1,19 @@
 ## Planning Document
 
+* Outline Classes/Tables
+* Outline Models/Methods
+* Create Database/tables
+* Create Test Database
+* Export Database
+* Add Exported Database to Vinter.Solution folder
+* Create Models folder
+* Create .cs file for each Class in Models folder
+* Create ControllerTest file for each Class and Home
+* Create ModelTests folder
+* Create Test Files for each Class in the ModelTests folder
+* Create basic content for all files
+* Set up test files for working with the database
+
 ### Classes
 * Bottle
 * Varietal
@@ -33,12 +47,52 @@
 * public void Save()
 
 ###  Specs
-#### Varietal Model Specs
-##### Spec 1: Varietal returns name
+#### Bottle Model Specs
+##### Spec 0: Bottle returns bottle
 **Example:**
-Input: 'Zinfandel'.
+Input: 1, 'Zinfandel', "Mexico", "Don Giovanni", 1
+Output: Bottle
+##### Spec 1: Bottle returns bottle id
+**Example:**
+Input: 1, 'Zinfandel', "Mexico", "Don Giovanni", 1
+Output: 1
+##### Spec 2: Bottle returns bottle name
+**Example:**
+Input: 1, 'Zinfandel', "Mexico", "Don Giovanni", 1
 Output: 'Zinfandel'
-##### Spec 2: Varietal add new item
+##### Spec 3: Bottle returns a list of all bottles
+**Example:**
+Input:
+bottleOne: (1, 'Zinfandel', "Mexico", "Don Giovanni", 1), bottleTwo: (1, 'PortoPort', "California", "Paul's Vineyard", 2)
+Output: List<Bottle>{bottleOne, bottleTwo}
+##### Spec 4: Bottle add new bottle
+**Example:**
+Input: 'New Item: Cabernet'
+Output: 'Cabernet'
+##### Spec 5: Bottle delete from list array of things(Cabernet)
+**Example:**
+Input: 'Zinfandel' 'Cabernet'
+Output: 'Cabernet'
+##### Spec 6: Bottle saves item (new item)
+**Example:**
+Input:  'New Item: Cabernet'
+Output: 'Cabernet'
+
+#### Varietal Model Specs
+##### Spec 1: VarietalConstructor returns Varietal
+**Example:**
+Input: "test varietal", 2.
+Output: Varietal
+
+##### Spec 2: Varietal returns name (GetName_ReturnsName_String())
+**Example:**
+Input: "test varietal", 2
+Output: "test varietal"
+##### Spec 3: Varietal return id (GetId_ReturnsVarietalId_Int())
+**Example:**
+Input: 2
+Output: 2
+##### Spec 4: Varietal add new item
 **Example:**
 Input: 'New Item: Cabernet'
 Output: 'Cabernet'
@@ -55,28 +109,6 @@ Output: 'Zinfandel' 'Cabernet'
 Input:  'New Item: Cabernet'
 Output: 'Cabernet'
 
-
-#### Bottle Model Specs
-##### Spec 1: Bottle returns name
-**Example:**
-Input: 'Zinfandel'.
-Output: 'Zinfandel'
-##### Spec 2: Bottle add new item
-**Example:**
-Input: 'New Item: Cabernet'
-Output: 'Cabernet'
-##### Spec 3: Bottle delete from list array of things(Cabernet)
-**Example:**
-Input: 'Zinfandel' 'Cabernet'
-Output: 'Cabernet'
-##### Spec 4: Bottle returns a list of all bottles
-**Example:**
-Input: Method call
-Output: 'Zinfandel' 'Cabernet'
-##### Spec 5: Bottle saves item (new item)
-**Example:**
-Input:  'New Item: Cabernet'
-Output: 'Cabernet'
 
 
 
